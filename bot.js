@@ -36,8 +36,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 	                  to: channelID,
 	                  message: nsfw
 	              });
+	              break;
             	};
-          break;
          }
-     }
-})
+     })
