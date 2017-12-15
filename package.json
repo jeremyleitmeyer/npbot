@@ -18,7 +18,7 @@
   "homepage": "https://github.com/jeremyleitmeyer/discord-now-playing-bot#readme",
   "dependencies": {
     "discord": "^0.8.2",
-    "discord.io-gateway_v6": "github:woor/discord.io",
+    "discord.io": "github:woor/discord.io",
     "express": "^4.16.2",
     "node-rest-client": "^3.1.0",
     "osu-api": "0.0.3",
