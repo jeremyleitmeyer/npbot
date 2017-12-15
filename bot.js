@@ -1,4 +1,4 @@
-var Discord = require('discord.io');
+var Discord = require('discord.io-gateway_v6');
 var logger = require('winston');
 var auth = require('./auth.json');
 var Client = require('node-rest-client').Client;
