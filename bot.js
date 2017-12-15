@@ -37,6 +37,8 @@ bot.on('ready', function (evt) {
 
 app.post('/np-chan', function(req, res){
 	var np = res.user
+	console.log(req)
+	console.log(res)
 	bot.on('message', function (user, userID, channelID, message, evt) {
   // will listen for messages that will start with `!`
   if (message.substring(0, 1) == '!') {
