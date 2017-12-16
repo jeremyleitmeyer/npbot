@@ -36,11 +36,11 @@ app.get('/np-chan', function(req,res){
 });
 
 app.post('/np-chan', function(req, res){
-	console.log(req.body);      // your JSON
+	console.log(req.body.user + req.body.artist);      // your JSON
 
   bot.sendMessage({
-    to: channelID,
-    message: "You are " + req.body
+    to: '380442081103183876',
+    message: "You are " + req.body.user
   });
 	res.redirect('/')
 })
