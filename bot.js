@@ -51,7 +51,7 @@ app.post('/np-chan', function(req, res){
 	// put it in osu api
 	var osu = "https://osu.ppy.sh/api/get_beatmaps?b=" + beatmap + "&k=" + auth.osu + "&limit=1";
 	client.get(osu, function (data, response){
-		// length comes back with a colon, this inserts it up to 9999
+		// length comes back in seconds, change to min : seconds
 		var length = data[0].total_length;
 		if (length > 60) {
 		  var minutes = Math.floor(length / 60);
