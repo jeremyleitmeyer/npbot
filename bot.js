@@ -34,6 +34,9 @@ bot.on('ready', function (evt) {
 });
 
 
+app.get('/np-chan', function(req,res){
+	res.send(req.user + "work bitch")
+}
 
 app.post('/np-chan', function(req, res){
 	var np = res.user
