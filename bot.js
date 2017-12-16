@@ -7,8 +7,7 @@ var Client = require('node-rest-client').Client;
 var key = require('./api.json');
 var client = new Client();
 var osuapi = require('osu-api');
-var express = require('express');
-var app = express();
+var app = require('express')();
 var osu = new osuapi.Api(key);
 var np, data, response;
 
@@ -47,8 +46,8 @@ app.get('/np-chan', function(req,res){
 });
 
 app.post('/np-chan', function(req, res){
-	vconsole.log(request.body);      // your JSON
-  response.send(request.body);
+	console.log(req.body);      // your JSON
+  response.send(req.body);
 	console.log(res)
 	bot.on('message', function (user, userID, channelID, message, evt) {
   // will listen for messages that will start with `!`
