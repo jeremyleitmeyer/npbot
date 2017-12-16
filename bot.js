@@ -42,7 +42,7 @@ app.post('/np-chan', function(req, res){    // your JSON
 
   bot.sendMessage({
     to: channelID,
-    message: data.user + " is listening to: " + req.body.title + " by: " + req.body.artist + ". Download it at: " + req.body.url  
+    message: data.user + " is listening to: " + req.body.title + " by: " + req.body.artist + ".\nDownload it at: " + req.body.url  
   });
 	res.redirect('/')
 })
