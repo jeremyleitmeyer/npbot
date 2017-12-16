@@ -55,6 +55,9 @@ app.post('/np-chan', function(req, res){    // your JSON
 		} else {
 			length.splice(0, 0, ':')
 		}
+
+		var total_length = length.join('')
+		console.log(osu)
 	  bot.sendMessage({
 	    to: channelID,
 	    message: '**' + req.body.user + '**' + ' is listening to:',
@@ -69,7 +72,7 @@ app.post('/np-chan', function(req, res){    // your JSON
 	      height: 100
 	    },
 	    title: req.body.artist + ' - ' + req.body.title,
-	    description: 'BPM: ' + data[0].bpm + '\nLength: ' + length.join('') + '\nBeatmap: [Download](' + req.body.url + ')'
+	    description: 'BPM: ' + data[0].bpm + '\nLength: ' + total_length + '\nBeatmap: [Download](' + req.body.url + ')'
 	  }
 	  	
 	  });
