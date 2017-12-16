@@ -4,6 +4,7 @@ var keys = require('./keys')
 var request = require('request-promise');
 var bodyParser = require('body-parser');
 var app = require('express')();
+const channelID = '380442081103183876'
 
 app.use(bodyParser.json());
 
@@ -38,7 +39,7 @@ app.get('/np-chan', function(req,res){
 app.post('/np-chan', function(req, res){    // your JSON
 
   bot.sendMessage({
-    to: "general",
+    to: channelID,
     message: "You are " + req.body.user
   });
 	res.redirect('/')
