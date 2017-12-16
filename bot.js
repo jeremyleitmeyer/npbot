@@ -42,17 +42,17 @@ app.get('/np-chan', function(req,res){
 	res.send(req.user + "work bitch")
 });
 
-request({
-    url: 'http://npbot-osu.herokuapp.com/np-chan',
-    method: 'POST',
-    options: {
-    	simple: false
-    }
-}).catch(function (error) {
-        console.log(error);
-    }).then(function () {
-        console.log('OK')
-    });
+// request({
+//     url: 'http://npbot-osu.herokuapp.com/np-chan',
+//     method: 'POST',
+//     options: {
+//     	simple: false
+//     }
+// }).catch(function (error) {
+//         console.log(error);
+//     }).then(function () {
+//         console.log('OK')
+//     });
 
 app.post('/np-chan', function(req, res){
 	var np = res.user
