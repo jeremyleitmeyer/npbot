@@ -1,5 +1,6 @@
 var Discord = require('discord.io');
 var logger = require('winston');
+var auth = require('./auth.json')
 var request = require('request-promise');
 var bodyParser = require('body-parser');
 var app = require('express')();
