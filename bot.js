@@ -7,7 +7,8 @@ var Client = require('node-rest-client').Client;
 var key = require('./api.json');
 var client = new Client();
 var osuapi = require('osu-api');
-var app = require('express')();
+var express = require('express');
+var app = express.createServer();
 var osu = new osuapi.Api(key);
 var np, data, response;
 
