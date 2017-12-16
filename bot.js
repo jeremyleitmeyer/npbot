@@ -72,7 +72,7 @@ app.post('/np-chan', function(req, res){
 	    },
 	    thumbnail:
 	    {
-	      url: 'https://i.imgur.com/wL1Q2Sk.png',
+	      url: 'https://b.ppy.sh/thumb/' + data[0].beatmapset_id + 'l.jpg',
 	      height: 100
 	    },
 	    title: req.body.artist + ' - ' + req.body.title,
