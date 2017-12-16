@@ -4,7 +4,7 @@ const keys = require('./keys')
 const request = require('request-promise');
 const bodyParser = require('body-parser');
 const app = require('express')();
-const channelID = '380442081103183876'
+const channelID = 'your ID here'
 
 app.use(bodyParser.json());
 
