@@ -37,13 +37,14 @@ app.get('/np-chan', function(req,res){
 });
 
 app.post('/np-chan', function(req, res){    // your JSON
-	console.log(req.body.user)
+
 	var data = req.body
 
   bot.sendMessage({
     to: channelID,
-    message: "hi"
+    message: data.user + " is listening to: " + req.body.title + " by: " + req.body.artist + ". Download it at: " + req.body.url  
   });
+	res.redirect('/')
 })
 
 const PORT = process.env.PORT || 5000;
