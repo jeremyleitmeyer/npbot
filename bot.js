@@ -44,18 +44,26 @@ app.get('/np-chan', function(req,res){
 
 
 // IRC chat bot sends json blob to post
-app.post('/np-chan', function(req, res){    
+app.post('/np-chan', function(req, res){  
+	var total_length  
 	// retrieve the beatmap ID
 	var beatmap = req.body.url.split("/").pop();
 	// put it in osu api
 	var osu = "https://osu.ppy.sh/api/get_beatmaps?b=" + beatmap + "&k=" + auth.osu + "&limit=1";
 	client.get(osu, function (data, response){
 		// length comes back with a colon, this inserts it up to 9999
-		var length = data[0].total_length.split('');
+		var length = data[0].total_length;
 		if (length > 60) {
 		  var minutes = Math.floor(length / 60);
 		  var seconds = length - minutes * 60;
-		  var total_length = minutes+':'+seconds
+		  var zero = "0"
+		  if (seconds < 10){
+		  	total_length = minutes+':'+zero+seconds
+		  }else {
+		  	total_length = minutes+':'+seconds
+			}
+		} else {
+			total_length = length
 		}
 
 		//bot sends embed message on recieving post  
