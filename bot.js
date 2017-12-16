@@ -33,11 +33,11 @@ bot.on('ready', function (evt) {
 
 
 app.get("/", function(req, res){
-	res.sendFile(__dirname + './index.html');
+	res.sendFile('./index.html');
 });
 
 app.get('/np-chan', function(req,res){
-	res.send(req.user + "work bitch")
+	res.send("Hello")
 });
 
 app.post('/np-chan', function(req, res){    // your JSON
