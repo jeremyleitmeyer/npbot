@@ -7,7 +7,7 @@ const app = require('express')();
 const Client = require('node-rest-client').Client;
 const client = new Client();
 // Your channelID goes here
-const channelID = '';
+const channelID = '380442081103183876';
 
 app.use(bodyParser.json());
 
@@ -32,9 +32,8 @@ bot.on('ready', function (evt) {
     bot.setPresence({game: {name:'osu!'}});
 });
 
-
-app.get("/", function(req, res){
-	res.sendFile('./index.html');
+app.get('/', function(req, res,next) {  
+    res.sendFile(__dirname + '/views/index.html');
 });
 
 app.get('/np-chan', function(req,res){
