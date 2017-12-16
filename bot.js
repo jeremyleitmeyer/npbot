@@ -6,7 +6,8 @@ const bodyParser = require('body-parser');
 const app = require('express')();
 const Client = require('node-rest-client').Client;
 const client = new Client();
-const channelID = '380442081103183876';
+// Your channelID goes here
+const channelID = '';
 
 app.use(bodyParser.json());
 
@@ -37,17 +38,18 @@ app.get("/", function(req, res){
 });
 
 app.get('/np-chan', function(req,res){
-	res.send("Hello")
+	res.send("POST here with JSON")
 });
 
-app.post('/np-chan', function(req, res){    // your JSON
-	console.log(req.body)
 
+// IRC chat bot sends json blob to post
+app.post('/np-chan', function(req, res){    
+	// retrieve the beatmap ID
 	var beatmap = req.body.url.split("/").pop()
-
+	// put it in osu api
 	var osu = "https://osu.ppy.sh/api/get_beatmaps?b=" + beatmap + "&k=" + auth.osu + "&limit=1"
 	client.get(osu, function (data, response){
-
+		// length comes back with a colon, this inserts it up to 9999
 		var length = data[0].total_length.split('')
 		if (length.length === 4){
 			length.splice(2, 0, ':')
@@ -58,7 +60,7 @@ app.post('/np-chan', function(req, res){    // your JSON
 		}
 
 		var total_length = length.join('')
-		console.log(osu)
+		//bot sends embed message on recieving post  
 	  bot.sendMessage({
 	    to: channelID,
 	    message: '**' + req.body.user + '**' + ' is listening to:',
@@ -78,9 +80,12 @@ app.post('/np-chan', function(req, res){    // your JSON
 	  	
 	  });
 	})
+	// to check on obj
   res.send(req.body)
 })
 
+
+// dynamic port
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, function(){
