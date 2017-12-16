@@ -32,7 +32,7 @@ bot.on('ready', function (evt) {
     bot.setPresence({game: {name:'osu!'}});
 });
 
-app.get('/', function(req, res,next) {  
+app.get('/', function(req, res) {  
     res.sendFile(__dirname + '/views/index.html');
 });
 
@@ -52,7 +52,7 @@ app.post('/np-chan', function(req, res){
 		var length = data[0].total_length.split('');
 		if (length.length === 4){
 			length.splice(2, 0, ':')
-		} else if (length.length === 3) {
+		} else if (length.length === 3){
 			length.splice(1, 0, ':')
 		} else {
 			length.splice(0, 0, ':')
