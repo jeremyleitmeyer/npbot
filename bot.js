@@ -4,7 +4,7 @@ const auth = require('./auth.json')
 const request = require('request-promise');
 const bodyParser = require('body-parser');
 const app = require('express')();
-const channelID = '380442081103183876'
+const channelID = '380442081103183876';
 
 app.use(bodyParser.json());
 
@@ -38,11 +38,22 @@ app.get('/np-chan', function(req,res){
 
 app.post('/np-chan', function(req, res){    // your JSON
 	console.log(req.body)
-	var data = req.body
 
   bot.sendMessage({
-    to: '380442081103183876',
-    message: '```' + req.body + '```' 
+    to: channelID,
+    embed: {
+    color: 1139500,
+    footer: { 
+      text: '© Riker, Flo, & Tux'
+    },
+    thumbnail:
+    {
+      url: 'https://i.imgur.com/wL1Q2Sk.png'
+    },
+    title: '**' + req.body.title + '**  ',
+    url: req.body.url ,
+    description: 'By: ' + req.body.artist + '\nUser: ' + '**' + req.body.user + '**  ',
+  }
   	
   });
   res.send(req.body)
