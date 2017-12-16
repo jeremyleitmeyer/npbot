@@ -1,6 +1,6 @@
 const Discord = require('discord.io');
 const logger = require('winston');
-const keys = require('./keys')
+const auth = require('./auth.json')
 const request = require('request-promise');
 const bodyParser = require('body-parser');
 const app = require('express')();
@@ -17,8 +17,8 @@ logger.add(logger.transports.Console, {
 
 logger.level = 'debug';
 
-const bot = new Discord.Client({
-   token: process.env.TOKEN,
+var bot = new Discord.Client({
+   token: auth.token,
    autorun: true
 });
 
@@ -37,26 +37,15 @@ app.get('/np-chan', function(req,res){
 });
 
 app.post('/np-chan', function(req, res){    // your JSON
-
+	console.log(req.body)
 	var data = req.body
 
   bot.sendMessage({
-    to: channelID,
-    message:"ya", 
-  	embed: {
-    color: 6826080,
-    footer: { 
-      text: 'footer'
-    },
-    thumbnail:
-    {
-      url: 'https://cdn.discordapp.com/attachments/380442081103183876/391411634268143616/unknown.png'
-    },
-    title: 'title',
-    url: 'osu.ppy.sh'
-  }
+    to: '380442081103183876',
+    message: '```' + req.body + '```' 
+  	
   });
-	res.redirect('/')
+  res.send(req.body)
 })
 
 const PORT = process.env.PORT || 5000;
