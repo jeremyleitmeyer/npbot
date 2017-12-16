@@ -76,7 +76,7 @@ app.post('/np-chan', function(req, res){
 	      height: 100
 	    },
 	    title: req.body.artist + ' - ' + req.body.title,
-	    description: 'BPM: ' + data[0].bpm + '\nLength: ' + total_length + '\nBeatmap: [View/Download](' + req.body.url + ')'
+	    description: 'BPM: ' + data[0].bpm + '\nLength: ' + total_length + '\nBeatmap: [View](' + req.body.url + ')/[Download](' + 'https://osu.ppy.sh/d/' + beatmap + ')'
 	  }
 	  	
 	  });
