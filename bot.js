@@ -37,7 +37,7 @@ app.get('/np-chan', function(req,res){
 });
 
 app.post('/np-chan', function(req, res){    // your JSON
-
+	console.log(req.body.user)
 	var data = req.body
 
   bot.sendMessage({
