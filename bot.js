@@ -75,8 +75,8 @@ app.post('/np-chan', function(req, res){
 	      url: 'https://i.imgur.com/wL1Q2Sk.png',
 	      height: 100
 	    },
-	    title: req.body.artist + ' -',
-	    description: req.body.title + '\nBPM: ' + data[0].bpm + '\nLength: ' + total_length + '\nBeatmap: [View/Download](' + req.body.url + ')'
+	    title: req.body.artist + ' - ' + req.body.title,
+	    description: 'BPM: ' + data[0].bpm + '\nLength: ' + total_length + '\nBeatmap: [View/Download](' + req.body.url + ')'
 	  }
 	  	
 	  });
