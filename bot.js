@@ -1,6 +1,6 @@
 var Discord = require('discord.io');
 var logger = require('winston');
-var auth = require('./auth.json')
+var keys = require('./keys')
 var request = require('request-promise');
 var bodyParser = require('body-parser');
 var app = require('express')();
@@ -17,7 +17,7 @@ logger.add(logger.transports.Console, {
 logger.level = 'debug';
 
 var bot = new Discord.Client({
-   token: auth.token,
+   token: keys.TOKEN,
    autorun: true
 });
 
