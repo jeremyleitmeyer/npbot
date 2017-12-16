@@ -28,7 +28,7 @@ bot.on('ready', function (evt) {
     logger.info('Connected');
     logger.info('Logged in as: ');
     logger.info(bot.username + ' - (' + bot.id + ')');
-    bot.setPresence({name:'osu!'});
+    bot.setPresence({game: {name:'osu!'}});
 });
 
 
