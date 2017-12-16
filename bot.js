@@ -39,7 +39,7 @@ app.post('/np-chan', function(req, res){
 	console.log(req.body.user + req.body.artist);      // your JSON
 
   bot.sendMessage({
-    to: '380442081103183876',
+    to: 380442081103183876,
     message: "You are " + req.body.user
   });
 	res.redirect('/')
