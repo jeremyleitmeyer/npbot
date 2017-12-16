@@ -1,5 +1,6 @@
 var Discord = require('discord.io');
 var logger = require('winston');
+var request = require('request-promise');
 var auth = require('./auth.json');
 var Client = require('node-rest-client').Client;
 var key = require('./api.json');
@@ -37,6 +38,15 @@ bot.on('ready', function (evt) {
 app.get('/np-chan', function(req,res){
 	res.send(req.user + "work bitch")
 });
+
+request({
+    url: 'http://npbot-osu.herokuapp.com/np-chan',
+    method: 'POST'
+}).catch(function (error) {
+        console.log(error);
+    }).then(function () {
+        console.log('OK')
+    });
 
 app.post('/np-chan', function(req, res){
 	var np = res.user
