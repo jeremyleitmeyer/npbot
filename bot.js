@@ -1,9 +1,9 @@
-var Discord = require('discord.io');
-var logger = require('winston');
-var keys = require('./keys')
-var request = require('request-promise');
-var bodyParser = require('body-parser');
-var app = require('express')();
+const Discord = require('discord.io');
+const logger = require('winston');
+const keys = require('./keys')
+const request = require('request-promise');
+const bodyParser = require('body-parser');
+const app = require('express')();
 const channelID = '380442081103183876'
 
 app.use(bodyParser.json());
@@ -17,7 +17,7 @@ logger.add(logger.transports.Console, {
 
 logger.level = 'debug';
 
-var bot = new Discord.Client({
+const bot = new Discord.Client({
    token: process.env.TOKEN,
    autorun: true
 });
@@ -44,7 +44,6 @@ app.post('/np-chan', function(req, res){    // your JSON
     to: channelID,
     message: "hi"
   });
-	res.redirect('/')
 })
 
 const PORT = process.env.PORT || 5000;
