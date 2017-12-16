@@ -35,11 +35,10 @@ app.get('/np-chan', function(req,res){
 	res.send(req.user + "work bitch")
 });
 
-app.post('/np-chan', function(req, res){
-	console.log(req.body.user + req.body.artist);      // your JSON
+app.post('/np-chan', function(req, res){    // your JSON
 
   bot.sendMessage({
-    to: 380442081103183876,
+    to: "general",
     message: "You are " + req.body.user
   });
 	res.redirect('/')
