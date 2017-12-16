@@ -42,7 +42,19 @@ app.post('/np-chan', function(req, res){    // your JSON
 
   bot.sendMessage({
     to: channelID,
-    message: "```" + "**" + data.user + "**" + " is listening to:\n" + "[" + "**" + req.body.title + "**" + " by: " + "**" + req.body.artist + "**" + "](" + req.body.url  + ")" 
+    message: "```" + "**" + data.user + "**" + " is listening to:\n" + "[" + "**" + req.body.title + "**" + " by: " + "**" + req.body.artist + "**" + "](" + req.body.url  + ")" + "```", 
+  	embed: {
+    color: 6826080,
+    footer: { 
+      text: 'footer'
+    },
+    thumbnail:
+    {
+      url: 'https://cdn.discordapp.com/attachments/380442081103183876/391411634268143616/unknown.png'
+    },
+    title: 'title',
+    url: 'osu.ppy.sh'
+  }
   });
 	res.redirect('/')
 })
