@@ -42,7 +42,7 @@ app.post('/np-chan', function(req, res){    // your JSON
 
   bot.sendMessage({
     to: channelID,
-    message: data.user
+    message: "hi"
   });
 	res.redirect('/')
 })
