@@ -17,7 +17,7 @@ logger.add(logger.transports.Console, {
 logger.level = 'debug';
 
 var bot = new Discord.Client({
-   token: keys.TOKEN,
+   token: process.env.TOKEN,
    autorun: true
 });
 
@@ -37,8 +37,6 @@ app.get('/np-chan', function(req,res){
 
 app.post('/np-chan', function(req, res){
 	console.log(req.body);      // your JSON
-  res.send(req.body);
-	console.log(res)
 
   bot.sendMessage({
     to: channelID,
