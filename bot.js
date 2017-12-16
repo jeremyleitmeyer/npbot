@@ -34,6 +34,9 @@ bot.on('ready', function (evt) {
     logger.info(bot.username + ' - (' + bot.id + ')');
 });
 
+app.get("/", function(req, res){
+	res.sendFile('index.html')
+});
 
 app.get('/np-chan', function(req,res){
 	res.send(req.user + "work bitch")
@@ -73,6 +76,7 @@ app.post('/np-chan', function(req, res){
 	    }
 	  }
 	})
+	redirect('/')
 })
 
 const PORT = process.env.PORT || 5000;
