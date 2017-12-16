@@ -29,7 +29,7 @@ bot.on('ready', function (evt) {
 });
 
 app.get("/", function(req, res){
-	rres.sendFile(__dirname + './index.html');
+	res.sendFile(__dirname + './index.html');
 });
 
 app.get('/np-chan', function(req,res){
@@ -38,9 +38,11 @@ app.get('/np-chan', function(req,res){
 
 app.post('/np-chan', function(req, res){    // your JSON
 
+	var data = req.body
+
   bot.sendMessage({
     to: channelID,
-    message: req.body.user + " is listening to: " + req.body.title + " by: " + req.body.artist + ". Download it at: " + req.body.url  
+    message: data.user
   });
 	res.redirect('/')
 })
