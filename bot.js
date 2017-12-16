@@ -8,7 +8,7 @@ var key = require('./api.json');
 var client = new Client();
 var osuapi = require('osu-api');
 var express = require('express');
-var app = express.createServer();
+var app = express();
 var osu = new osuapi.Api(key);
 var np, data, response;
 
@@ -16,7 +16,7 @@ var osuUser = "user"
 
 var apiOne = "https://osu.ppy.sh/api/get_user_recent?u=" + osuUser + "&k=" + key.token + "&limit=1"
 
-app.use(express.bodyParser());
+app.use(bodyParser.json());
 
 //logger settings
 logger.remove(logger.transports.Console);
