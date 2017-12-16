@@ -52,15 +52,12 @@ app.post('/np-chan', function(req, res){
 	client.get(osu, function (data, response){
 		// length comes back with a colon, this inserts it up to 9999
 		var length = data[0].total_length.split('');
-		if (length.length === 4){
-			length.splice(2, 0, ':')
-		} else if (length.length === 3){
-			length.splice(1, 0, ':')
-		} else {
-			length.splice(0, 0, '')
-		};
+		if (length > 60) {
+		  var minutes = Math.floor(length / 60);
+		  var seconds = length - minutes * 60;
+		  var total_length = minutes+':'+seconds
+		}
 
-		var total_length = length.join('');
 		//bot sends embed message on recieving post  
 	  bot.sendMessage({
 	    to: channelID,
