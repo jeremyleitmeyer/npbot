@@ -2,18 +2,7 @@ var Discord = require('discord.io');
 var logger = require('winston');
 var request = require('request-promise');
 var bodyParser = require('body-parser');
-var auth = require('./auth.json');
-var Client = require('node-rest-client').Client;
-var key = require('./api.json');
-var client = new Client();
-var osuapi = require('osu-api');
 var app = require('express')();
-var osu = new osuapi.Api(key);
-var np, data, response;
-
-var osuUser = "user"
-
-var apiOne = "https://osu.ppy.sh/api/get_user_recent?u=" + osuUser + "&k=" + key.token + "&limit=1"
 
 app.use(bodyParser.json());
 
