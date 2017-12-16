@@ -44,21 +44,21 @@ app.get('/np-chan', function(req,res){
 // IRC chat bot sends json blob to post
 app.post('/np-chan', function(req, res){    
 	// retrieve the beatmap ID
-	var beatmap = req.body.url.split("/").pop()
+	var beatmap = req.body.url.split("/").pop();
 	// put it in osu api
-	var osu = "https://osu.ppy.sh/api/get_beatmaps?b=" + beatmap + "&k=" + auth.osu + "&limit=1"
+	var osu = "https://osu.ppy.sh/api/get_beatmaps?b=" + beatmap + "&k=" + auth.osu + "&limit=1";
 	client.get(osu, function (data, response){
 		// length comes back with a colon, this inserts it up to 9999
-		var length = data[0].total_length.split('')
+		var length = data[0].total_length.split('');
 		if (length.length === 4){
 			length.splice(2, 0, ':')
 		} else if (length.length === 3) {
 			length.splice(1, 0, ':')
 		} else {
 			length.splice(0, 0, ':')
-		}
+		};
 
-		var total_length = length.join('')
+		var total_length = length.join('');
 		//bot sends embed message on recieving post  
 	  bot.sendMessage({
 	    to: channelID,
@@ -80,7 +80,7 @@ app.post('/np-chan', function(req, res){
 	  });
 	})
 	// to check on obj
-  res.send(req.body)
+  res.send(req.body);
 })
 
 
@@ -88,5 +88,5 @@ app.post('/np-chan', function(req, res){
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, function(){
-		console.log('Running on: ' + PORT)
+		console.log('Running on: ' + PORT);
 });
