@@ -35,7 +35,7 @@ bot.on('ready', function (evt) {
 });
 
 app.get("/", function(req, res){
-	res.sendFile('index.html')
+	rres.sendFile(__dirname + './index.html');
 });
 
 app.get('/np-chan', function(req,res){
