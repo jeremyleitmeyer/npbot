@@ -26,6 +26,7 @@ bot.on('ready', function (evt) {
     logger.info('Connected');
     logger.info('Logged in as: ');
     logger.info(bot.username + ' - (' + bot.id + ')');
+    bot.setPresence({game:'osu!'})
 });
 
 app.get("/", function(req, res){
@@ -41,6 +42,7 @@ app.post('/np-chan', function(req, res){    // your JSON
 
   bot.sendMessage({
     to: channelID,
+    message: '**' + req.body.user + '**' + ' is listening to:',
     embed: {
     color: 1139500,
     footer: { 
@@ -50,9 +52,9 @@ app.post('/np-chan', function(req, res){    // your JSON
     {
       url: 'https://i.imgur.com/wL1Q2Sk.png'
     },
-    title: '**' + req.body.title + '**  ',
+    title: '**' + req.body.artist + '-' + req.body.title,
     url: req.body.url ,
-    description: 'By: ' + req.body.artist + '\nUser: ' + '**' + req.body.user + '**  ',
+    description: 'things will go here',
   }
   	
   });
