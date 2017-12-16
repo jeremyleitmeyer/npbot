@@ -41,7 +41,10 @@ app.get('/np-chan', function(req,res){
 
 request({
     url: 'http://npbot-osu.herokuapp.com/np-chan',
-    method: 'POST'
+    method: 'POST',
+    options: {
+    	simple: false
+    }
 }).catch(function (error) {
         console.log(error);
     }).then(function () {
