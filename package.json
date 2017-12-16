@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/jeremyleitmeyer/discord-now-playing-bot#readme",
   "dependencies": {
+    "body-parser": "^1.18.2",
     "discord": "^0.8.2",
     "discord.io": "github:woor/discord.io#gateway_v6",
     "express": "^4.16.2",

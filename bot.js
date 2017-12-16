@@ -1,6 +1,7 @@
 var Discord = require('discord.io');
 var logger = require('winston');
 var request = require('request-promise');
+var bodyParser = require('body-parser');
 var auth = require('./auth.json');
 var Client = require('node-rest-client').Client;
 var key = require('./api.json');
@@ -13,6 +14,8 @@ var np, data, response;
 var osuUser = "user"
 
 var apiOne = "https://osu.ppy.sh/api/get_user_recent?u=" + osuUser + "&k=" + key.token + "&limit=1"
+
+app.use(express.bodyParser());
 
 //logger settings
 logger.remove(logger.transports.Console);
@@ -42,20 +45,9 @@ app.get('/np-chan', function(req,res){
 	res.send(req.user + "work bitch")
 });
 
-// request({
-//     url: 'http://npbot-osu.herokuapp.com/np-chan',
-//     method: 'POST',
-//     options: {
-//     	simple: false
-//     }
-// }).catch(function (error) {
-//         console.log(error);
-//     }).then(function () {
-//         console.log('OK')
-//     });
-
 app.post('/np-chan', function(req, res){
-	var np = res.user
+	vconsole.log(request.body);      // your JSON
+  response.send(request.body);
 	console.log(res)
 	bot.on('message', function (user, userID, channelID, message, evt) {
   // will listen for messages that will start with `!`
@@ -75,7 +67,7 @@ app.post('/np-chan', function(req, res){
 	    }
 	  }
 	})
-	redirect('/')
+	res.redirect('/')
 })
 
 const PORT = process.env.PORT || 5000;
