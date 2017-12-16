@@ -28,8 +28,9 @@ bot.on('ready', function (evt) {
     logger.info('Connected');
     logger.info('Logged in as: ');
     logger.info(bot.username + ' - (' + bot.id + ')');
-    bot.setPresence({game:'osu!'})
+    bot.setPresence({name:'osu!'});
 });
+
 
 app.get("/", function(req, res){
 	res.sendFile(__dirname + './index.html');
