@@ -3,13 +3,15 @@ const logger = require('winston');
 const auth = require('./auth.json')
 const request = require('request-promise');
 const bodyParser = require('body-parser');
-const app = require('express')();
+const express = require('express');
+const app = express();
 const Client = require('node-rest-client').Client;
 const client = new Client();
 // Your channelID goes here
 const channelID = '380442081103183876';
 
 app.use(bodyParser.json());
+app.use(express.static('public'));
 
 //logger settings
 logger.remove(logger.transports.Console);
