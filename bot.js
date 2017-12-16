@@ -42,7 +42,7 @@ app.post('/np-chan', function(req, res){    // your JSON
 
   bot.sendMessage({
     to: channelID,
-    message: "```" + "**" + data.user + "**" + " is listening to:\n" + "[" + "**" + req.body.title + "**" + " by: " + "**" + req.body.artist + "**" + "](" + req.body.url  + ")" + "```", 
+    message:"ya", 
   	embed: {
     color: 6826080,
     footer: { 
