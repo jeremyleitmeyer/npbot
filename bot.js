@@ -39,7 +39,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/np-chan', function(req,res){
-	res.send("POST here with JSON")
+	res.sendFile(__dirname + '/views/index.html');
 });
 
 
