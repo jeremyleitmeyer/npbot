@@ -51,12 +51,14 @@ app.post('/np-chan', function(req, res){
 	// put it in osu api
 	var osu = "https://osu.ppy.sh/api/get_beatmaps?b=" + beatmap + "&k=" + auth.osu + "&limit=1";
 	client.get(osu, function (data, response){
+
+		data = data[0]
 		// length comes back in seconds, change to min : seconds
 		if (data === undefined || data === null){
 			console.log("error")
 		}else{
 
-		var length = data[0].total_length;
+		var length = data.total_length;
 		if (length > 60) {
 		  var minutes = Math.floor(length / 60);
 		  var seconds = length - minutes * 60;
@@ -81,11 +83,11 @@ app.post('/np-chan', function(req, res){
 	    },
 	    thumbnail:
 	    {
-	      url: 'https://b.ppy.sh/thumb/' + data[0].beatmapset_id + 'l.jpg',
+	      url: 'https://b.ppy.sh/thumb/' + data.beatmapset_id + 'l.jpg',
 	      height: 100
 	    },
 	    title: req.body.artist + ' - ' + req.body.title,
-	    description: 'BPM: ' + data[0].bpm + '\nLength: ' + total_length + '\nBeatmap: [View](' + req.body.url + ')'
+	    description: 'BPM: ' + data.bpm + '\nLength: ' + total_length + '\nBeatmap: [View](' + req.body.url + ')'
 	  }
 	  	
 	  })
