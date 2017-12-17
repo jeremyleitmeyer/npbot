@@ -55,7 +55,9 @@ app.post('/np-chan', function(req, res){
 		data = data[0]
 		// length comes back in seconds, change to min : seconds
 		if (data === undefined || data === null){
-			console.log("error")
+			console.log("ERR! Api call returned undefined. Bad link!")
+			// prayers to satan
+			// 		¯\_(ツ)_/¯
 		}else{
 
 		var length = data.total_length;
