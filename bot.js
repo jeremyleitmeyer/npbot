@@ -3,13 +3,15 @@ const logger = require('winston');
 const auth = require('./auth.json')
 const request = require('request-promise');
 const bodyParser = require('body-parser');
-const app = require('express')();
+const express = require('express');
+const app = express();
 const Client = require('node-rest-client').Client;
 const client = new Client();
 // Your channelID goes here
-const channelID = '';
+const channelID = '391493353688137730';
 
 app.use(bodyParser.json());
+app.use(express.static('public'));
 
 //logger settings
 logger.remove(logger.transports.Console);
@@ -32,9 +34,8 @@ bot.on('ready', function (evt) {
     bot.setPresence({game: {name:'osu!'}});
 });
 
-
-app.get("/", function(req, res){
-	res.sendFile('./index.html');
+app.get('/', function(req, res) {  
+    res.sendFile(__dirname + '/views/index.html');
 });
 
 app.get('/np-chan', function(req,res){
@@ -43,23 +44,36 @@ app.get('/np-chan', function(req,res){
 
 
 // IRC chat bot sends json blob to post
-app.post('/np-chan', function(req, res){    
+app.post('/np-chan', function(req, res){  
+	var total_length  
 	// retrieve the beatmap ID
-	var beatmap = req.body.url.split("/").pop()
+	var beatmap = req.body.url.split("/").pop();
 	// put it in osu api
-	var osu = "https://osu.ppy.sh/api/get_beatmaps?b=" + beatmap + "&k=" + auth.osu + "&limit=1"
+	var osu = "https://osu.ppy.sh/api/get_beatmaps?b=" + beatmap + "&k=" + auth.osu + "&limit=1";
 	client.get(osu, function (data, response){
-		// length comes back with a colon, this inserts it up to 9999
-		var length = data[0].total_length.split('')
-		if (length.length === 4){
-			length.splice(2, 0, ':')
-		} else if (length.length === 3) {
-			length.splice(1, 0, ':')
+
+		data = data[0]
+		// length comes back in seconds, change to min : seconds
+		if (data === undefined || data === null){
+			console.log("ERR! Api call returned undefined. Bad link!")
+			// prayers to satan
+			// 		¯\_(ツ)_/¯
+		}else{
+
+		var length = data.total_length;
+		if (length > 60) {
+		  var minutes = Math.floor(length / 60);
+		  var seconds = length - minutes * 60;
+		  var zero = "0"
+		  if (seconds < 10){
+		  	total_length = minutes+':'+zero+seconds
+		  }else {
+		  	total_length = minutes+':'+seconds
+			}
 		} else {
-			length.splice(0, 0, ':')
+			total_length = length
 		}
 
-		var total_length = length.join('')
 		//bot sends embed message on recieving post  
 	  bot.sendMessage({
 	    to: channelID,
@@ -71,23 +85,43 @@ app.post('/np-chan', function(req, res){
 	    },
 	    thumbnail:
 	    {
-	      url: 'https://i.imgur.com/wL1Q2Sk.png',
+	      url: 'https://b.ppy.sh/thumb/' + data.beatmapset_id + 'l.jpg',
 	      height: 100
 	    },
 	    title: req.body.artist + ' - ' + req.body.title,
-	    description: 'BPM: ' + data[0].bpm + '\nLength: ' + total_length + '\nBeatmap: [Download](' + req.body.url + ')'
+	    description: 'BPM: ' + data.bpm + '\nLength: ' + total_length + '\nBeatmap: [View](' + req.body.url + ')'
 	  }
 	  	
-	  });
-	})
+	  })
+	}
+})
 	// to check on obj
-  res.send(req.body)
+  res.send(req.body);
 })
 
+bot.on('message', function (user, userID, channelID, message, evt) {
+  // will listen for messages that will start with `!`
+  if (message.substring(0, 1) == '!') {
+    var args = message.substring(1).split(' ');
+    var cmd = args[0];
+   
+    args = args.splice(1);
+    switch(cmd) {
+    	//commands
+      case 'np-chan':
+      console.log(channelID)
+          bot.sendMessage({
+              to: channelID,
+              message: "GAAAH! I'm awake !!"
+          });
+      break;
+     }
+  }
+})
 
 // dynamic port
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, function(){
-		console.log('Running on: ' + PORT)
+		console.log('Running on: ' + PORT);
 });
