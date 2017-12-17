@@ -52,7 +52,7 @@ app.post('/np-chan', function(req, res){
 	var osu = "https://osu.ppy.sh/api/get_beatmaps?b=" + beatmap + "&k=" + auth.osu + "&limit=1";
 	client.get(osu, function (data, response){
 		// length comes back in seconds, change to min : seconds
-		if (data == undefined){
+		if (data === undefined){
 			console.log("error")
 		}else{
 
