@@ -39,20 +39,25 @@ app.get('/', function(req, res) {
 });
 
 app.get('/np-chan', function(req,res){
-	res.send("POST here with JSON")
+	res.sendFile(__dirname + '/views/post.html')
 });
 
 
 // IRC chat bot sends json blob to post
 app.post('/np-chan', function(req, res){  
-	var total_length  
+	var total_length,length;
 	// retrieve the beatmap ID
 	var beatmap = req.body.url.split("/").pop();
 	// put it in osu api
 	var osu = "https://osu.ppy.sh/api/get_beatmaps?b=" + beatmap + "&k=" + auth.osu + "&limit=1";
 	client.get(osu, function (data, response){
 		// length comes back in seconds, change to min : seconds
-		var length = data[0].total_length;
+		if(data[0].total_length === null || data[0].total_length === undefined) {
+			length = 0;
+		} else {
+			length = data[0].total_length;
+		};
+
 		if (length > 60) {
 		  var minutes = Math.floor(length / 60);
 		  var seconds = length - minutes * 60;
