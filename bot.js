@@ -76,6 +76,7 @@ app.post('/np-chan', function(req, res){
 
 		//bot sends embed message on recieving post  
 	  bot.sendMessage({
+	  	console.log("Chat working")
 	    to: channelID,
 	    message: '**' + req.body.user + '**' + ' is listening to:',
 	    embed: {
