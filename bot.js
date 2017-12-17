@@ -76,7 +76,6 @@ app.post('/np-chan', function(req, res){
 
 		//bot sends embed message on recieving post  
 	  bot.sendMessage({
-	  	console.log("Chat working")
 	    to: channelID,
 	    message: '**' + req.body.user + '**' + ' is listening to:',
 	    embed: {
@@ -93,7 +92,7 @@ app.post('/np-chan', function(req, res){
 	    description: 'BPM: ' + data.bpm + '\nLength: ' + total_length + '\nBeatmap: [View](' + req.body.url + ')'
 	  }
 	  	
-	  })
+	  },console.log("Chat working"))
 	}
 })
 	// to check on obj
