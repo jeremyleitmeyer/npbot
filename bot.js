@@ -54,9 +54,8 @@ app.post('/np-chan', function(req, res){
 		// length comes back in seconds, change to min : seconds
 		if (data == undefined){
 			console.log("error")
-			break;
 		}else{
-			
+
 		var length = data[0].total_length;
 		if (length > 60) {
 		  var minutes = Math.floor(length / 60);
