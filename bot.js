@@ -86,11 +86,11 @@ app.post('/np-chan', function(req, res){
 	    },
 	    title: req.body.artist + ' - ' + req.body.title,
 	    description: 'BPM: ' + data[0].bpm + '\nLength: ' + total_length + '\nBeatmap: [View](' + req.body.url + ')'
-	  }
+	  };
 	  	
 	  });
-	}
-}
+	};
+});
 	// to check on obj
   res.send(req.body);
 })
