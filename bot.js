@@ -8,7 +8,7 @@ const app = express();
 const Client = require('node-rest-client').Client;
 const client = new Client();
 // Your channelID goes here
-const channelID = '380442081103183876';
+const channelID = '391493353688137730';
 
 app.use(bodyParser.json());
 app.use(express.static('public'));
@@ -51,8 +51,16 @@ app.post('/np-chan', function(req, res){
 	// put it in osu api
 	var osu = "https://osu.ppy.sh/api/get_beatmaps?b=" + beatmap + "&k=" + auth.osu + "&limit=1";
 	client.get(osu, function (data, response){
-		// length comes back with a colon, this inserts it up to 9999
-		var length = data[0].total_length;
+
+		data = data[0]
+		// length comes back in seconds, change to min : seconds
+		if (data === undefined || data === null){
+			console.log("ERR! Api call returned undefined. Bad link!")
+			// prayers to satan
+			// 		¯\_(ツ)_/¯
+		}else{
+
+		var length = data.total_length;
 		if (length > 60) {
 		  var minutes = Math.floor(length / 60);
 		  var seconds = length - minutes * 60;
@@ -77,19 +85,39 @@ app.post('/np-chan', function(req, res){
 	    },
 	    thumbnail:
 	    {
-	      url: 'https://b.ppy.sh/thumb/' + data[0].beatmapset_id + 'l.jpg',
+	      url: 'https://b.ppy.sh/thumb/' + data.beatmapset_id + 'l.jpg',
 	      height: 100
 	    },
 	    title: req.body.artist + ' - ' + req.body.title,
-	    description: 'BPM: ' + data[0].bpm + '\nLength: ' + total_length + '\nBeatmap: [View](' + req.body.url + ')'
+	    description: 'BPM: ' + data.bpm + '\nLength: ' + total_length + '\nBeatmap: [View](' + req.body.url + ')'
 	  }
 	  	
-	  });
-	})
+	  })
+	}
+})
 	// to check on obj
   res.send(req.body);
 })
 
+bot.on('message', function (user, userID, channelID, message, evt) {
+  // will listen for messages that will start with `!`
+  if (message.substring(0, 1) == '!') {
+    var args = message.substring(1).split(' ');
+    var cmd = args[0];
+   
+    args = args.splice(1);
+    switch(cmd) {
+    	//commands
+      case 'np-chan':
+      console.log(channelID)
+          bot.sendMessage({
+              to: channelID,
+              message: "GAAAH! I'm awake !!"
+          });
+      break;
+     }
+  }
+})
 
 // dynamic port
 const PORT = process.env.PORT || 5000;
