@@ -8,7 +8,7 @@ const Client = require('node-rest-client').Client;
 const client = new Client();
 const request = require('request');
 // Your channelID goes here
-const channelID = '391493353688137730';
+const channelID = '';
 
 app.use(bodyParser.json());
 app.use(express.static('public'));
@@ -53,16 +53,16 @@ app.post('/np-chan', function(req, res){
 	var beatmap = req.body.url.split("/").pop();
 	// put it in osu api
 	var osu = "https://osu.ppy.sh/api/get_beatmaps?b=" + beatmap + "&k=" + auth.osu + "&limit=1";
+	
 	client.get(osu, function (data, response){
 
 		data = data[0]
-		// length comes back in seconds, change to min : seconds
 		if (data === undefined || data === null){
 			console.log("ERR! Api call returned undefined. Bad link!")
 			// prayers to satan
 			// 		¯\_(ツ)_/¯
 		}else{
-
+		// length comes back in seconds, change to min : seconds
 		var length = data.total_length;
 		if (length > 60) {
 		  var minutes = Math.floor(length / 60);
@@ -114,10 +114,7 @@ if (message.substring(0, 1) == '!') {
     case 'np-chan':
 
     // to wake the bot up if it goes to "sleep"
-    request('https://npbot-osu.herokuapp.com/wake.txt', { json: false }, (err, res, body) => {
-  		if (err) { return console.log(err); }
-  		console.log("Awake!")
-		});
+    // still need to iron this out
     console.log(channelID)
         bot.sendMessage({
             to: channelID,
