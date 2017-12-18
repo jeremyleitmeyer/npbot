@@ -8,7 +8,7 @@ const app = express();
 const Client = require('node-rest-client').Client;
 const client = new Client();
 // Your channelID goes here
-const channelID = '391493353688137730';
+const channelID = '';
 
 app.use(bodyParser.json());
 app.use(express.static('public'));
@@ -39,7 +39,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/np-chan', function(req,res){
-	res.send("POST here with JSON")
+	res.sendFile(__dirname + '/views/post.html')
 });
 
 
@@ -53,13 +53,12 @@ app.post('/np-chan', function(req, res){
 	client.get(osu, function (data, response){
 
 		data = data[0]
-		// length comes back in seconds, change to min : seconds
 		if (data === undefined || data === null){
 			console.log("ERR! Api call returned undefined. Bad link!")
 			// prayers to satan
 			// 		¯\_(ツ)_/¯
 		}else{
-
+		// length comes back in seconds, change to min : seconds
 		var length = data.total_length;
 		if (length > 60) {
 		  var minutes = Math.floor(length / 60);
