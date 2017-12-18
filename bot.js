@@ -1,12 +1,12 @@
 const Discord = require('discord.io');
 const logger = require('winston');
 const auth = require('./auth.json')
-const request = require('request-promise');
 const bodyParser = require('body-parser');
 const express = require('express');
 const app = express();
 const Client = require('node-rest-client').Client;
 const client = new Client();
+const request = require('request');
 // Your channelID goes here
 const channelID = '391493353688137730';
 
@@ -101,21 +101,26 @@ app.post('/np-chan', function(req, res){
 
 bot.on('message', function (user, userID, channelID, message, evt) {
   // will listen for messages that will start with `!`
-  if (message.substring(0, 1) == '!') {
-    var args = message.substring(1).split(' ');
-    var cmd = args[0];
-   
-    args = args.splice(1);
-    switch(cmd) {
-    	//commands
-      case 'np-chan':
-      console.log(channelID)
-          bot.sendMessage({
-              to: channelID,
-              message: "GAAAH! I'm awake !!"
-          });
-      break;
-     }
+if (message.substring(0, 1) == '!') {
+  var args = message.substring(1).split(' ');
+  var cmd = args[0];
+ 
+  args = args.splice(1);
+  switch(cmd) {
+  	//commands
+    case 'np-chan':
+    // to wake the bot up if it goes to "sleep"
+    request('https://npbot-osu.herokuapp.com', { json: false }, (err, res, body) => {
+  		if (err) { return console.log(err); }
+  		console.log("Awake!")
+		});
+    console.log(channelID)
+        bot.sendMessage({
+            to: channelID,
+            message: "GAAAH! I'm awake !!"
+        });
+    break;
+   }
   }
 })
 
