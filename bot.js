@@ -8,7 +8,7 @@ const app = express();
 const Client = require('node-rest-client').Client;
 const client = new Client();
 // Your channelID goes here
-const channelID = '';
+const channelID = 'YOUR CHANNEL ID';
 
 app.use(bodyParser.json());
 app.use(express.static('public'));
