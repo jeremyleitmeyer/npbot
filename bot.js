@@ -42,6 +42,9 @@ app.get('/np-chan', function(req,res){
 	res.sendFile(__dirname + '/views/post.html');
 });
 
+app.get('/wake.txt', function(req, res) {  
+    res.sendFile(__dirname + '/wake.txt');
+});
 
 // IRC chat bot sends json blob to post
 app.post('/np-chan', function(req, res){  
@@ -109,8 +112,9 @@ if (message.substring(0, 1) == '!') {
   switch(cmd) {
   	//commands
     case 'np-chan':
+
     // to wake the bot up if it goes to "sleep"
-    request('https://npbot-osu.herokuapp.com', { json: false }, (err, res, body) => {
+    request('https://npbot-osu.herokuapp.com/wake.txt', { json: false }, (err, res, body) => {
   		if (err) { return console.log(err); }
   		console.log("Awake!")
 		});
