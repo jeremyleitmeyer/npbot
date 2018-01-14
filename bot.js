@@ -43,9 +43,6 @@ app.get('/np-chan', function(req,res){
 	res.sendFile(__dirname + '/views/post.html');
 });
 
-app.get('/wake.txt', function(req, res) {  
-    res.sendFile(__dirname + '/wake.txt');
-});
 
 // IRC chat bot sends json blob to post
 app.post('/np-chan', function(req, res){  
