@@ -41,11 +41,9 @@ app.get('/', function(req, res) {
 app.get('/np-chan', function(req,res){
 
 	res.sendFile(__dirname + '/views/post.html');
-});
-
 
 // IRC chat bot sends json blob to post
-app.post('/np-chan', function(req, res){  
+app.post('/POST HERE', function(req, res){  
 	var total_length  
 	// retrieve the beatmap ID
 	var beatmap = req.body.url.split("/").pop();
