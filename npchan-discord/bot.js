@@ -8,7 +8,7 @@ const Client = require('node-rest-client').Client;
 const client = new Client();
 const request = require('request');
 // Your channelID goes here
-const channelID = '391493353688137730';
+const channelID = process.env.CHANNEL;
 
 app.use(bodyParser.json());
 app.use(express.static('public'));
@@ -23,7 +23,7 @@ logger.add(logger.transports.Console, {
 logger.level = 'debug';
 
 var bot = new Discord.Client({
-	token: auth.token,
+	token: process.env.BOT_TOKEN,
 	autorun: true
 });
 
@@ -53,7 +53,7 @@ app.post('/np-chan', function (req, res) {
 	// retrieve the beatmap ID
 	var beatmap = req.body.url.split("/").pop();
 	// put it in osu api
-	var osu = "https://osu.ppy.sh/api/get_beatmaps?b=" + beatmap + "&k=" + auth.osu + "&limit=1";
+	var osu = "https://osu.ppy.sh/api/get_beatmaps?b=" + beatmap + "&k=" + process.env.OSU + "&limit=1";
 
 	client.get(osu, function (data, response) {
 
