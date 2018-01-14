@@ -95,7 +95,6 @@ app.post('/np-chan', function (req, res) {
 					description: 'BPM: ' + data.bpm + '\nLength: ' + total_length + '\nBeatmap: [View](' + req.body.url + ')'
 				}
 			})
-
 		}
 	})
 })
