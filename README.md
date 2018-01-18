@@ -46,7 +46,7 @@ or (if you want to save a debug file keeping track of the requests sent byt the 
 ./<your_output_file> <path/to/your/irc_logfile> -d <path/to/the/debug/output_file>
 ```
 
-Once hosted the Discord bot listens for a json object sent from the server side. It then uses the osu! API to get song info. It then sends an embed message to your specified Discord channelID.
+Once the Discord bot is hosted it listens for a json object sent from the server side. It then uses the osu! API to get song info. It then sends an embed message to your specified Discord channelID.
  
 ## History
 
