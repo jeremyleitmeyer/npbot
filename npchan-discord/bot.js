@@ -19,7 +19,7 @@ logger.remove(logger.transports.Console);
 logger.add(logger.transports.Console, {
 	colorize: true
 });
-
+// test
 logger.level = 'debug';
 
 var bot = new Discord.Client({
