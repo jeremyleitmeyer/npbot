@@ -53,7 +53,8 @@ or (if you want to save a debug file keeping track of the requests sent byt the 
 Run `node bot.js` and the Discord bot should start up and be ready to receive data from the IRC side of things. It is important to note that this expects a certain JSON object from the IRC side. 
 
 ```
-{ "time" : "1524838757", "user" : "docflo7", "artist" : "Fujijo Seitokai Shikkou-bu", "title" : "Best FriendS", "url" : "https://osu.ppy.sh/b/1577478" }```
+{ "time" : "1524838757", "user" : "docflo7", "artist" : "Fujijo Seitokai Shikkou-bu", "title" : "Best FriendS", "url" : "https://osu.ppy.sh/b/1577478" }
+```
 
 If you are using a different IRC chat bot the output must look like it does above.
  
