@@ -6,7 +6,11 @@ A bot that sends in-game "/np" info to your Discord channel!
 
 #### Setting up the discord bot
 
-To use the discord side of np-chan youll need to host this bot somewhere.  Then fill in the variable names with your respective names.
+The first thing you'll need to run this bot is Node.js. You can download it [here](https://nodejs.org/en/). Then youll need to host this bot somewhere and fill in the environment variable names with your respective values.
+
+Once the discord side is downloaded run `npm install` to install the dependencies. Before going any further you will need your own Osu! API key, your desired Discord channel ID (where you want the messages to appear), and your own bot token(see Discords API docs).
+
+
 
 #### Setting up the osu! chat data reader
 
@@ -46,12 +50,18 @@ or (if you want to save a debug file keeping track of the requests sent byt the 
 ./<your_output_file> <path/to/your/irc_logfile> -d <path/to/the/debug/output_file>
 ```
 
-Once the Discord bot is hosted it listens for a json object sent from the server side. It then uses the osu! API to get song info. It then sends an embed message to your specified Discord channelID.
+Run `node bot.js` and the Discord bot should start up and be ready to receive data from the IRC side of things. It is important to note that this expects a certain JSON object from the IRC side. 
+
+```
+{ "time" : "1524838757", "user" : "docflo7", "artist" : "Fujijo Seitokai Shikkou-bu", "title" : "Best FriendS", "url" : "https://osu.ppy.sh/b/1577478" }```
+
+If you are using a different IRC chat bot the output must look like it does above.
  
 ## History
 
 
 TODO: Implement setting channelID
+
 ## Credits
   Riker, Docflo7 & jeremyleitmeyer
 ## License
